@@ -54,10 +54,7 @@ def main():
                 humidity=int(self.t2.get())
                 temperature=int(self.t3.get())
                 output=predict_forest(oxygen,humidity,temperature)
-                #if output>str(0.5):
-                    #self.lbl5=Label(win, text='kuch karna hain iska ab?')
-                #else:
-                    #self.lbl5=Label(win, text='Your Forest is safe')
+                
                 self.t4.insert(END, str(output*100))
     window=Tk()
     mywin=MyWindow(window)
