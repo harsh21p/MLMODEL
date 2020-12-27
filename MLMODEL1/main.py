@@ -9,7 +9,10 @@ model=pickle.load(open('model.pkl','rb'))
 def predict_forest(oxygen,humidity,temperature):
     input=np.array([[oxygen,humidity,temperature]]).astype(np.float64)
     prediction=model.predict_proba(input)
+    print(prediction)
     pred='{0:.{1}f}'.format(prediction[0][0], 2)
+    print(pred)
+    print(float(pred))
     return float(pred)
 
 def main():
@@ -26,7 +29,7 @@ def main():
             self.t3=Entry()
             self.t4=Entry()
             
-            self.btn1 = Button(win, text='Predict')
+            
         
             self.lbl1.place(x=100, y=50)
             self.lbl6.place(x=100, y=10)
@@ -34,12 +37,9 @@ def main():
             self.lbl2.place(x=100, y=100)
             self.t2.place(x=200, y=100)
             #self.lbl5=Label(win, text='Hello')
+            self.btn1=Button(win, text='Predict', command=self.add)
             
-            helv36 = tkFont.Font(family='Helvetica', size=20, weight=tkFont.BOLD)
-            
-            self.b1=Button(win, text='Predict',font=helv36, command=self.add)
-            
-            self.b1.place(x=260, y=200)
+            self.btn1.place(x=260, y=200)
             
         
             self.lbl4.place(x=100, y=250)
@@ -55,7 +55,7 @@ def main():
                 temperature=int(self.t3.get())
                 output=predict_forest(oxygen,humidity,temperature)
                 
-                self.t4.insert(END, str(output*100))
+                self.t4.insert(END, str(output))
     window=Tk()
     mywin=MyWindow(window)
     window.title('FORINTENSHA')
